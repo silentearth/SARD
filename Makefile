@@ -2,7 +2,7 @@ CDIR := ./
 BINDIR := ./bin/
 SOURCES := $(shell find $(SRCDIR) -name "*.c")
 OBJECTS := $(patsubst %.c, %.o, $(SOURCES))
-CFLAGS := -Werror
+CFLAGS := -w
 
 CC := gcc
 
