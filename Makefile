@@ -1,17 +1,21 @@
-CDIR := ./
-BINDIR := ./bin/
-SOURCES := $(shell find $(SRCDIR) -name "*.c")
-OBJECTS := $(patsubst %.c, %.o, $(SOURCES))
-CFLAGS := -w
+CC=gcc
 
-CC := gcc
+RM=rm
 
-ALLFILES := $(SOURCES)
+CFLAGS=-c -Wall -O3
 
-.PHONY : all
+LDFLAGS=-lm
 
-all: test
+SOURCES=$(wildcard *.c)
 
-test: $(OBJECTS)
-	$(CC) $^ -o $(BINDIR)/$@ $(CFLAGS)
+OBJECTS=$(SOURCES:.c=.o)
+
+EXECS=$(SOURCES:%.c=%)
+
+.PHONY: all
+all: $(OBJECTS) $(EXECS)
+
+.c.o:
+	$(CC) $(CFLAGS) $< -o $@
+
 
